@@ -10,10 +10,11 @@ A single self-contained static page (`index.html`): no build step, so it can be 
 
 ## Before going live: fill every orange-highlighted placeholder
 - [ ] Legal company name, Companies House number, registered office, VAT number (footer)
-- [ ] Year Mindworks was founded, years of experience, background sentence (About)
+- [ ] Year Mindworks was founded, sectors/clients sentence (Company)
+- [ ] Founder line: years of experience, education or previous employers, photo (Leadership)
 - [ ] 3–4 real case studies: sector, year, role, stack, one verifiable outcome. Anonymise clients if NDAs require it
-- [ ] Portrait photo (4:5)
-- [ ] LinkedIn URL; confirm the contact email address
+- [ ] Higher-resolution logo (SVG ideally; the current PNG is 300px wide and softens on retina screens)
+- [ ] Company and personal LinkedIn URLs; confirm the contact email address
 - [ ] Confirm London as your base (it drives the clock and coordinates in the hero)
 - [ ] Trim the IoT stack list to technologies you have actually shipped with
 - [ ] Confirm process claims (free 30-minute call, reply within one working day)

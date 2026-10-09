@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mindworks — Software & IoT Engineering Consultancy</title>
-<meta name="description" content="Mindworks is a UK software and IoT engineering consultancy led by Berk Baydur. Architecture, hands-on delivery, team leadership and technology evaluation, billed by the hour.">
+<meta name="description" content="Mindworks is a UK software and IoT engineering consultancy. Architecture, hands-on delivery, team leadership and technology evaluation for companies building connected products, billed by the hour.">
 <meta name="theme-color" content="#F1EEE7">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +17,9 @@
   --ink-2: #4A4740;
   --ink-3: #8A867C;
   --rule: #CFCABD;
-  --signal: #E8480C;
-  --signal-ink: #FFFFFF;
+  --signal: #EE7448;
+  --signal-ink: #15140F;
+  --signal-text: #B9461C;
   --sans: "Schibsted Grotesk", ui-sans-serif, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   --gutter: clamp(16px, 4vw, 48px);
@@ -28,12 +29,12 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #12110E; --paper-2: #1C1B17; --ink: #EDE9DF; --ink-2: #B5B0A4;
-    --ink-3: #7C786E; --rule: #33312B; --signal: #FF5A1F; --signal-ink: #12110E;
+    --ink-3: #7C786E; --rule: #33312B; --signal: #EE7448; --signal-ink: #12110E; --signal-text: #F28B63;
   }
 }
 :root[data-theme="dark"] {
   --paper: #12110E; --paper-2: #1C1B17; --ink: #EDE9DF; --ink-2: #B5B0A4;
-  --ink-3: #7C786E; --rule: #33312B; --signal: #FF5A1F; --signal-ink: #12110E;
+  --ink-3: #7C786E; --rule: #33312B; --signal: #EE7448; --signal-ink: #12110E; --signal-text: #F28B63;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -57,9 +58,19 @@ header.top {
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule);
 }
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 24px; }
-.wordmark { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; letter-spacing: -.02em; font-size: 19px; }
-.wordmark svg { width: 22px; height: 22px; }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 24px; }
+.wordmark { display: flex; align-items: center; text-decoration: none; }
+.wordmark img { display: block; height: 38px; width: auto; }
+.logo-dark { display: none !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-light { display: none !important; }
+  :root:not([data-theme="light"]) .logo-dark { display: block !important; }
+}
+:root[data-theme="dark"] .logo-light { display: none !important; }
+:root[data-theme="dark"] .logo-dark { display: block !important; }
+.cta-short { display: none; }
+@media (max-width: 560px) { .cta-long { display: none; } .cta-short { display: inline; } }
+@media (max-width: 480px) { .wordmark img { height: 32px; } .cta-sm { padding: 8px 10px; font-size: 11.5px; } }
 nav.primary { display: flex; gap: 28px; }
 nav.primary a { text-decoration: none; font-size: 15px; color: var(--ink-2); transition: color .2s; }
 nav.primary a:hover { color: var(--ink); }
@@ -120,7 +131,7 @@ section.block { padding: clamp(72px, 10vw, 140px) 0; border-top: 1px solid var(-
 .sec-head { display: grid; grid-template-columns: 3fr 9fr; gap: clamp(16px, 4vw, 64px); margin-bottom: clamp(36px, 5vw, 64px); }
 @media (max-width: 820px) { .sec-head { grid-template-columns: 1fr; } }
 .sec-head .mono { color: var(--ink-3); padding-top: 12px; }
-.sec-head .mono span { color: var(--signal); }
+.sec-head .mono span { color: var(--signal-text); }
 h2 { font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.02; letter-spacing: -.035em; font-weight: 800; margin: 0; max-width: 16em; }
 h2 .soft { font-weight: 400; font-style: italic; color: var(--ink-2); }
 h3 { letter-spacing: -.02em; }
@@ -146,7 +157,7 @@ h3 { letter-spacing: -.02em; }
 }
 .index .plus::after { transform: rotate(90deg); }
 .index details[open] .plus::after { transform: rotate(0); }
-.index summary:hover .t { color: var(--signal); }
+.index summary:hover .t { color: var(--signal-text); }
 .index summary:hover { padding-left: 10px; }
 .index .body {
   display: grid; grid-template-columns: 64px 6fr 4fr; gap: 16px; padding: 0 0 32px;
@@ -193,7 +204,7 @@ h3 { letter-spacing: -.02em; }
 @media (max-width: 960px) { .engage { grid-template-columns: 1fr; } }
 .steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
 .steps li { display: grid; grid-template-columns: 48px 1fr; padding: 20px 0; border-top: 1px solid var(--rule); }
-.steps li::before { counter-increment: s; content: "0" counter(s); font-family: var(--mono); font-size: 13px; color: var(--signal); padding-top: 4px; }
+.steps li::before { counter-increment: s; content: "0" counter(s); font-family: var(--mono); font-size: 13px; color: var(--signal-text); padding-top: 4px; }
 .steps h3 { margin: 0 0 4px; font-size: 1.2rem; font-weight: 600; }
 .steps p { margin: 0; color: var(--ink-2); }
 .ledger { border: 1px solid var(--ink); font-family: var(--mono); font-size: 13px; }
@@ -205,7 +216,7 @@ h3 { letter-spacing: -.02em; }
 .ledger.in .bar i { width: var(--w); }
 .ledger .row .h { text-align: right; font-variant-numeric: tabular-nums; }
 .ledger .lf { display: flex; justify-content: space-between; padding: 12px 14px; font-weight: 500; }
-.ledger .lf b { color: var(--signal); font-weight: 500; }
+.ledger .lf b { color: var(--signal-text); font-weight: 500; }
 .ledger .note { padding: 0 14px 12px; color: var(--ink-3); font-size: 11.5px; }
 
 /* ---------- work ---------- */
@@ -222,13 +233,16 @@ h3 { letter-spacing: -.02em; }
 .case dd { margin: 0; }
 
 /* ---------- about ---------- */
-.about { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(24px, 5vw, 80px); }
+.about { display: grid; grid-template-columns: 8fr 4fr; gap: clamp(24px, 5vw, 80px); align-items: start; }
 @media (max-width: 820px) { .about { grid-template-columns: 1fr; } }
-.portrait {
-  aspect-ratio: 4 / 5; border: 1px solid var(--ink); background:
-  repeating-linear-gradient(135deg, transparent 0 10px, color-mix(in srgb, var(--ink) 7%, transparent) 10px 11px), var(--paper-2);
-  display: grid; place-items: center; color: var(--ink-3); text-align: center; padding: 20px;
-}
+.lead { border-top: 1px solid var(--ink); padding-top: 16px; color: var(--ink-2); font-size: 15px; }
+.lead > .mono { color: var(--ink-3); display: block; margin-bottom: 16px; }
+.lead-card { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
+.lead-photo { width: 64px; height: 64px; flex: none; display: grid; place-items: center; border: 1px solid var(--ink); background: var(--paper-2); color: var(--ink-3); font-size: 10px; }
+.lead-card strong { display: block; color: var(--ink); font-size: 1.1rem; font-weight: 600; }
+.lead-card .role { font-size: 14px; }
+.lead p { margin: 0 0 12px; }
+.lead a.mono { text-decoration: none; }
 .about .bio p { font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.5; margin: 0 0 1em; max-width: 34em; }
 .about .bio p:first-child::first-line { font-weight: 600; }
 .facts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin-top: 40px; }
@@ -272,17 +286,17 @@ footer p { margin: 0; }
 <header class="top">
   <div class="wrap">
     <a class="wordmark" href="#top" aria-label="Mindworks home">
-      <svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 16V6l6 6 6-6v10" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="9" y="15" width="4" height="4" fill="var(--signal)"/></svg>
-      Mindworks
+      <img class="logo-light" src="logo.png" width="300" height="62" alt="Mindworks: Your software consultant">
+      <img class="logo-dark" src="logo-dark.png" width="300" height="62" alt="" aria-hidden="true">
     </a>
     <nav class="primary" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="#stack">IoT stack</a>
       <a href="#engagements">Engagements</a>
       <a href="#work">Work</a>
-      <a href="#about">About</a>
+      <a href="#company">Company</a>
     </nav>
-    <a class="cta-sm" href="#contact">Start a conversation</a>
+    <a class="cta-sm" href="#contact"><span class="cta-long">Start a conversation</span><span class="cta-short">Contact</span></a>
   </div>
 </header>
 
@@ -299,11 +313,11 @@ footer p { margin: 0; }
         <div>
           <h1 class="rise d2">Software for things that live in the <span class="soft">real</span> world<span class="em">.</span></h1>
           <p class="lede rise d3">
-            I'm <strong>Berk Baydur</strong>, and Mindworks is my independent consultancy. I help companies design, build and run connected products, from firmware and device fleets to the cloud platforms and teams behind them. You hire me by the hour.
+            <strong>Mindworks</strong> is a UK software and IoT engineering consultancy. We help companies design, build and run connected products, from firmware and device fleets to the cloud platforms and the teams behind them.
           </p>
           <div class="actions rise d4">
             <a class="btn btn-primary" href="#contact">Book an intro call <span class="arr" aria-hidden="true">→</span></a>
-            <a class="btn btn-ghost" href="#services">What I do</a>
+            <a class="btn btn-ghost" href="#services">Our services</a>
           </div>
         </div>
 
@@ -324,42 +338,42 @@ footer p { margin: 0; }
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="mono"><span>§01</span> Services</p>
-        <h2>One senior engineer, five roles. <span class="soft">You use whichever ones the job needs.</span></h2>
+        <h2>Five ways to engage Mindworks. <span class="soft">Clients combine whichever ones the work needs.</span></h2>
       </div>
 
       <div class="index reveal">
         <details open>
           <summary><span class="n">01</span><span class="t">Architecture & technical consultancy</span><span class="plus" aria-hidden="true"></span></summary>
           <div class="body"><span></span>
-            <p>System design reviews, target architectures and the decisions in between: build or buy, monolith or services, which cloud, which protocol. You get written recommendations your team can act on, with the reasoning behind each one.</p>
+            <p>System design reviews, target architectures and the decisions in between: build or buy, monolith or services, which cloud, which protocol. Clients receive written recommendations their teams can act on, with the reasoning behind each one.</p>
             <div class="tags"><span class="tag">Architecture reviews</span><span class="tag">Tech due diligence</span><span class="tag">ADRs</span><span class="tag">Roadmaps</span></div>
           </div>
         </details>
         <details>
           <summary><span class="n">02</span><span class="t">IoT systems, end to end</span><span class="plus" aria-hidden="true"></span></summary>
           <div class="body"><span></span>
-            <p>Connected products from the device up: provisioning, telemetry pipelines, OTA updates, fleet management and the dashboards on top. I work on the layer where hardware and software teams usually talk past each other.</p>
+            <p>Connected products from the device up: provisioning, telemetry pipelines, OTA updates, fleet management and the dashboards on top. This is the layer where hardware and software teams most often talk past each other, and where Mindworks does its best work.</p>
             <div class="tags"><span class="tag">MQTT</span><span class="tag">BLE</span><span class="tag">Edge gateways</span><span class="tag">OTA</span><span class="tag">Fleet ops</span></div>
           </div>
         </details>
         <details>
           <summary><span class="n">03</span><span class="t">Hands-on software delivery</span><span class="plus" aria-hidden="true"></span></summary>
           <div class="body"><span></span>
-            <p>When you need code more than advice, I write it: backend services, APIs, integrations and the infrastructure they run on. I leave behind tests, docs and a codebase your own team can own.</p>
+            <p>When a project needs code more than advice, Mindworks builds it: backend services, APIs, integrations and the infrastructure they run on, delivered with tests, documentation and a codebase the client team can own.</p>
             <div class="tags"><span class="tag">Backend & APIs</span><span class="tag">Cloud infrastructure</span><span class="tag">CI/CD</span><span class="tag">Integrations</span></div>
           </div>
         </details>
         <details>
           <summary><span class="n">04</span><span class="t">Interim team leadership</span><span class="plus" aria-hidden="true"></span></summary>
           <div class="body"><span></span>
-            <p>I step in as engineering lead while you hire, reorganise or recover a delivery that has slipped. That covers running the team day to day, setting up processes that fit its size, and handing over cleanly once a permanent lead is in place.</p>
+            <p>Interim engineering leadership while a company hires, reorganises or recovers a delivery that has slipped. That covers running the team day to day, introducing processes that fit its size, and a clean handover once a permanent lead is in place.</p>
             <div class="tags"><span class="tag">Engineering management</span><span class="tag">Delivery process</span><span class="tag">Hiring</span><span class="tag">Mentoring</span></div>
           </div>
         </details>
         <details>
           <summary><span class="n">05</span><span class="t">Technology evaluation & adoption</span><span class="plus" aria-hidden="true"></span></summary>
           <div class="body"><span></span>
-            <p>Before you commit to a platform, vendor or tool, I trial it against your real constraints, write up what I found and, if it holds up, roll it out. That saves your team from finding the problems six months in.</p>
+            <p>Before a client commits to a platform, vendor or tool, Mindworks trials it against their real constraints, reports the findings and, if it holds up, leads the rollout. Problems surface in week one rather than month six.</p>
             <div class="tags"><span class="tag">Vendor trials</span><span class="tag">Proofs of concept</span><span class="tag">Rollout</span><span class="tag">Developer tooling</span></div>
           </div>
         </details>
@@ -398,10 +412,10 @@ footer p { margin: 0; }
       </div>
       <div class="engage">
         <ol class="steps reveal">
-          <li><div><h3>Intro call</h3><p>Thirty minutes, free. We work out whether I'm the right person for it, and if not, who might be.</p></div></li>
-          <li><div><h3>Scope & rate</h3><p>A short written scope, an hourly rate and an estimate of hours. No retainers unless you want one.</p></div></li>
-          <li><div><h3>Work in the open</h3><p>I work in your tools and your repos, inside your team's rhythm. Hours are logged against tasks so the invoice holds no surprises.</p></div></li>
-          <li><div><h3>Hand over</h3><p>Documentation, recorded walkthroughs and a team that no longer needs me. That's how I measure a good engagement.</p></div></li>
+          <li><div><h3>Introductory call</h3><p>A free thirty-minute conversation to understand the problem and confirm whether Mindworks is the right fit.</p></div></li>
+          <li><div><h3>Scope & rate</h3><p>A short written scope, an agreed hourly rate and an estimate of hours. Retainers are available but never required.</p></div></li>
+          <li><div><h3>Work in the open</h3><p>Mindworks works inside the client's own tools, repositories and rituals. Hours are logged against tasks, so every invoice is fully traceable.</p></div></li>
+          <li><div><h3>Hand over</h3><p>Documentation, recorded walkthroughs and a team that can carry on independently. That is how Mindworks measures a successful engagement.</p></div></li>
         </ol>
         <div class="ledger reveal" id="ledger" aria-label="Illustrative example of a weekly timesheet">
           <div class="lh"><span>Timesheet</span><span>Example week</span></div>
@@ -452,24 +466,34 @@ footer p { margin: 0; }
     </div>
   </section>
 
-  <section class="block" id="about">
+  <section class="block" id="company">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="mono"><span>§05</span> About</p>
-        <h2>Turkish-born, London-based, <span class="soft">building since <span class="placeholder">20XX</span>.</span></h2>
+        <p class="mono"><span>§05</span> Company</p>
+        <h2>An independent engineering consultancy, <span class="soft">founded in London in <span class="placeholder">20XX</span>.</span></h2>
       </div>
       <div class="about">
-        <div class="portrait mono reveal">Portrait<br>4:5, natural light, no stock photos</div>
         <div class="bio reveal">
-          <p>I'm Berk Baydur, a software engineer with <span class="placeholder">N</span> years of experience across product companies and consultancies, mostly where software meets hardware.</p>
-          <p>I founded Mindworks in <span class="placeholder">20XX</span> to work with companies directly: sometimes as their architect, sometimes as a developer on the team, sometimes as the person who sets up how the team works. <span class="placeholder">One sentence on your background: education, notable employers, what you're known for.</span></p>
-          <p>I work from London with clients across the UK and Europe, in English and Turkish.</p>
+          <p>Mindworks works with companies that build products at the point where software meets hardware: <span class="placeholder">device makers, industrial and energy businesses</span>, and the software teams that support them.</p>
+          <p>Engagements range from a few days of architectural advice to long-running delivery and leadership roles. Every engagement is led by a senior engineer, scoped in writing and billed transparently by the hour. <span class="placeholder">One sentence on notable sectors or clients, if you can name them.</span></p>
           <div class="facts">
-            <div><span class="mono">Based</span><strong>London, UK</strong></div>
-            <div><span class="mono">Languages</span><strong>English · Türkçe</strong></div>
-            <div><span class="mono">Working with</span><strong>UK & EU clients</strong></div>
+            <div><span class="mono">Founded</span><strong><span class="placeholder">20XX</span></strong></div>
+            <div><span class="mono">Headquarters</span><strong>London, UK</strong></div>
+            <div><span class="mono">Clients</span><strong>UK & Europe</strong></div>
           </div>
         </div>
+        <aside class="lead reveal" aria-label="Leadership">
+          <span class="mono">Leadership</span>
+          <div class="lead-card">
+            <div class="lead-photo mono" aria-hidden="true">Photo</div>
+            <div>
+              <strong>Berk Baydur</strong>
+              <span class="role">Founder & Principal Consultant</span>
+            </div>
+          </div>
+          <p>Software engineer with <span class="placeholder">N</span> years in IoT and distributed systems. <span class="placeholder">One line: education or notable previous employers.</span></p>
+          <a class="mono" href="https://www.linkedin.com/" rel="noopener"><span class="placeholder">LinkedIn</span> ↗</a>
+        </aside>
       </div>
     </div>
   </section>
@@ -479,12 +503,11 @@ footer p { margin: 0; }
       <div class="contact-grid">
         <p class="mono" style="color:color-mix(in srgb,var(--paper) 55%,transparent);padding-top:12px"><span style="color:var(--signal)">§06</span> Contact</p>
         <div>
-          <h2 class="reveal">Got a connected product that needs a senior pair of hands?</h2>
+          <h2 class="reveal">Building a connected product? Let's talk.</h2>
           <a class="mailto reveal" href="mailto:hello@mindworkss.co.uk">hello@mindworkss.co.uk</a>
           <div class="alt mono reveal">
-            <a href="https://www.linkedin.com/" rel="noopener"><span class="placeholder">LinkedIn</span> ↗</a>
-            <a href="https://github.com/berkbaydur" rel="noopener">GitHub ↗</a>
-            <span>Replies within one working day</span>
+            <a href="https://www.linkedin.com/" rel="noopener"><span class="placeholder">Mindworks on LinkedIn</span> ↗</a>
+                        <span>We reply within one working day</span>
           </div>
         </div>
       </div>
@@ -494,7 +517,7 @@ footer p { margin: 0; }
 
 <footer>
   <div class="wrap">
-    <div><span class="mono">Mindworks</span><p>Software & IoT engineering consultancy.</p></div>
+    <div><img class="logo-light" src="logo.png" width="150" height="31" alt="Mindworks" style="display:block;margin-bottom:10px"><img class="logo-dark" src="logo-dark.png" width="150" height="31" alt="" aria-hidden="true" style="margin-bottom:10px"><p>Software & IoT engineering consultancy.</p></div>
     <div><span class="mono">Company</span><p><span class="placeholder">Registered legal name Ltd</span><br>Registered in England & Wales<br>No. <span class="placeholder">00000000</span></p></div>
     <div><span class="mono">Registered office</span><p><span class="placeholder">Address line 1<br>London, POSTCODE</span></p></div>
     <div><span class="mono">© <span id="yr">2026</span></span><p><span class="placeholder">VAT No. if registered</span><br><a href="#">Privacy notice</a></p></div>
