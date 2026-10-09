@@ -172,7 +172,7 @@ h3 { letter-spacing: -.02em; }
 }
 
 /* ---------- signal path ---------- */
-.path { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--ink); }
+.path { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); border: 1px solid var(--ink); }
 .path .stage { padding: 22px 18px 26px; border-right: 1px solid var(--rule); position: relative; min-width: 0; }
 .path .stage:last-child { border-right: 0; }
 .path .stage .mono { color: var(--ink-3); display: block; margin-bottom: 40px; }
@@ -291,7 +291,7 @@ footer p { margin: 0; }
     </a>
     <nav class="primary" aria-label="Primary">
       <a href="#services">Services</a>
-      <a href="#stack">IoT stack</a>
+      <a href="#stack">Stack</a>
       <a href="#engagements">Engagements</a>
       <a href="#work">Work</a>
       <a href="#company">Company</a>
@@ -313,7 +313,7 @@ footer p { margin: 0; }
         <div>
           <h1 class="rise d2">Software for things that live in the <span class="soft">real</span> world<span class="em">.</span></h1>
           <p class="lede rise d3">
-            <strong>Mindworks</strong> is a UK software and IoT engineering consultancy. We help companies design, build and run connected products, from firmware and device fleets to the cloud platforms and the teams behind them.
+            <strong>Mindworks</strong> is a UK software and IoT engineering consultancy. We help companies design, build and run connected products, from firmware and device fleets to the cloud platforms, infrastructure and teams behind them.
           </p>
           <div class="actions rise d4">
             <a class="btn btn-primary" href="#contact">Book an intro call <span class="arr" aria-hidden="true">→</span></a>
@@ -338,7 +338,7 @@ footer p { margin: 0; }
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="mono"><span>§01</span> Services</p>
-        <h2>Five ways to engage Mindworks. <span class="soft">Clients combine whichever ones the work needs.</span></h2>
+        <h2>Six ways to engage Mindworks. <span class="soft">Clients combine whichever ones the work needs.</span></h2>
       </div>
 
       <div class="index reveal">
@@ -364,14 +364,21 @@ footer p { margin: 0; }
           </div>
         </details>
         <details>
-          <summary><span class="n">04</span><span class="t">Interim team leadership</span><span class="plus" aria-hidden="true"></span></summary>
+          <summary><span class="n">04</span><span class="t">DevOps & infrastructure operations</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><span></span>
+            <p>Keeping production fast, stable and observable. Mindworks manages servers and cloud infrastructure, configures CDNs and traffic routing, and sets up monitoring, metrics and alerting so issues are caught before customers notice them. Available as a one-off hardening project or as ongoing operational support.</p>
+            <div class="tags"><span class="tag">Server management</span><span class="tag">CDN</span><span class="tag">Traffic & load balancing</span><span class="tag">Monitoring & metrics</span><span class="tag">Alerting</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="n">05</span><span class="t">Interim team leadership</span><span class="plus" aria-hidden="true"></span></summary>
           <div class="body"><span></span>
             <p>Interim engineering leadership while a company hires, reorganises or recovers a delivery that has slipped. That covers running the team day to day, introducing processes that fit its size, and a clean handover once a permanent lead is in place.</p>
             <div class="tags"><span class="tag">Engineering management</span><span class="tag">Delivery process</span><span class="tag">Hiring</span><span class="tag">Mentoring</span></div>
           </div>
         </details>
         <details>
-          <summary><span class="n">05</span><span class="t">Technology evaluation & adoption</span><span class="plus" aria-hidden="true"></span></summary>
+          <summary><span class="n">06</span><span class="t">Technology evaluation & adoption</span><span class="plus" aria-hidden="true"></span></summary>
           <div class="body"><span></span>
             <p>Before a client commits to a platform, vendor or tool, Mindworks trials it against their real constraints, reports the findings and, if it holds up, leads the rollout. Problems surface in week one rather than month six.</p>
             <div class="tags"><span class="tag">Vendor trials</span><span class="tag">Proofs of concept</span><span class="tag">Rollout</span><span class="tag">Developer tooling</span></div>
@@ -384,8 +391,8 @@ footer p { margin: 0; }
   <section class="block" id="stack">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="mono"><span>§02</span> IoT stack</p>
-        <h2>Comfortable at every hop of the signal path<span style="color:var(--signal)">.</span></h2>
+        <p class="mono"><span>§02</span> Stack</p>
+        <h2>From the sensor to the server room, every hop of the signal path<span style="color:var(--signal)">.</span></h2>
       </div>
       <div class="path reveal" id="path">
         <div class="wire" aria-hidden="true"><span class="pulse"></span><span class="pulse p2"></span><span class="pulse p3"></span></div>
@@ -398,7 +405,9 @@ footer p { margin: 0; }
         <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">04 Cloud</span><h3>Platform</h3>
           <ul><li>AWS IoT · Azure IoT</li><li>Kafka · time-series DBs</li><li>Kubernetes</li><li>Terraform</li></ul></div>
         <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">05 Product</span><h3>Applications</h3>
-          <ul><li>Node.js · Python · Go</li><li>React dashboards</li><li>Mobile companions</li><li>Analytics & alerts</li></ul></div>
+          <ul><li>Ruby on Rails</li><li>Node.js · Python · Go</li><li>React dashboards</li><li>Mobile companions</li><li>Analytics & alerts</li></ul></div>
+        <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">06 Operations</span><h3>Run & observe</h3>
+          <ul><li>Server management</li><li>CDN · Cloudflare</li><li>Load balancing · WAF</li><li>Prometheus · Grafana</li><li>Logs · uptime · alerts</li></ul></div>
       </div>
       <p class="mono reveal" style="color:var(--ink-3);margin-top:16px"><span class="placeholder">Draft list. Edit to match the stack you have actually shipped with.</span></p>
     </div>
