@@ -14,8 +14,5 @@ A single self-contained static page (`index.html`): no build step, so it can be 
 - `favicon.svg`: browser tab icon
 - `fonts/`: self-hosted, Latin-subset web fonts, so the site makes no third-party requests and sets no cookies
 
-## Still to confirm before going live
-- [ ] Companies House company number (footer, highlighted in orange)
-- [ ] Contact email `hello@mindworkss.co.uk` exists and is monitored
-- [ ] Year(s) of the Encore Networks engagement, if you want a date on the case study
-- [ ] Optional: founder photo to replace the "BB" monogram in Leadership
+## Status
+All content is filled in. Optional later additions: Companies House number in the footer, dates on the case studies.
