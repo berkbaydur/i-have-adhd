@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mindworks — Software & IoT Engineering Consultancy</title>
+<meta name="description" content="Mindworks is a UK software and IoT engineering consultancy led by Berk Baydur. Architecture, hands-on delivery, team leadership and technology evaluation, billed by the hour.">
+<meta name="theme-color" content="#F1EEE7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F1EEE7;
+  --paper-2: #E7E3D9;
+  --ink: #15140F;
+  --ink-2: #4A4740;
+  --ink-3: #8A867C;
+  --rule: #CFCABD;
+  --signal: #E8480C;
+  --signal-ink: #FFFFFF;
+  --sans: "Schibsted Grotesk", ui-sans-serif, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+  --max: 1320px;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12110E; --paper-2: #1C1B17; --ink: #EDE9DF; --ink-2: #B5B0A4;
+    --ink-3: #7C786E; --rule: #33312B; --signal: #FF5A1F; --signal-ink: #12110E;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12110E; --paper-2: #1C1B17; --ink: #EDE9DF; --ink-2: #B5B0A4;
+  --ink-3: #7C786E; --rule: #33312B; --signal: #FF5A1F; --signal-ink: #12110E;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-size: 17px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; }
+::selection { background: var(--signal); color: var(--signal-ink); }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em; text-transform: uppercase; }
+.placeholder { background: color-mix(in srgb, var(--signal) 14%, transparent); border-bottom: 1px dashed var(--signal); padding: 0 .15em; }
+
+/* ---------- header ---------- */
+header.top {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 24px; }
+.wordmark { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; letter-spacing: -.02em; font-size: 19px; }
+.wordmark svg { width: 22px; height: 22px; }
+nav.primary { display: flex; gap: 28px; }
+nav.primary a { text-decoration: none; font-size: 15px; color: var(--ink-2); transition: color .2s; }
+nav.primary a:hover { color: var(--ink); }
+.cta-sm {
+  font-family: var(--mono); font-size: 12.5px; text-transform: uppercase; letter-spacing: .03em;
+  text-decoration: none; padding: 9px 14px; border: 1px solid var(--ink); border-radius: 2px;
+  transition: background .2s, color .2s;
+}
+.cta-sm:hover { background: var(--ink); color: var(--paper); }
+@media (max-width: 820px) { nav.primary { display: none; } }
+
+/* ---------- hero ---------- */
+.hero { padding: clamp(40px, 7vw, 96px) 0 0; }
+.readout {
+  display: flex; flex-wrap: wrap; gap: 6px 22px; color: var(--ink-3);
+  padding-bottom: 20px; border-bottom: 1px solid var(--rule);
+}
+.readout b { color: var(--ink); font-weight: 500; }
+.hero-grid { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(24px, 4vw, 64px); padding: clamp(32px, 5vw, 64px) 0; align-items: end; }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
+h1 {
+  font-size: clamp(2.6rem, 6.4vw, 5.9rem); line-height: .96; letter-spacing: -.045em;
+  font-weight: 800; margin: 0 0 28px;
+}
+h1 .em { color: var(--signal); }
+h1 .soft { font-weight: 400; font-style: italic; letter-spacing: -.035em; }
+.lede { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--ink-2); max-width: 36em; margin: 0 0 32px; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 22px;
+  font-weight: 600; font-size: 16px; text-decoration: none; border-radius: 2px;
+  transition: transform .25s var(--ease), background .2s, color .2s;
+}
+.btn-primary { background: var(--signal); color: var(--signal-ink); }
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-primary .arr { transition: transform .25s var(--ease); }
+.btn-primary:hover .arr { transform: translateX(4px); }
+.btn-ghost { border: 1px solid var(--rule); }
+.btn-ghost:hover { border-color: var(--ink); }
+
+.figure { border: 1px solid var(--ink); background: var(--paper-2); position: relative; }
+.figure-head, .figure-foot {
+  display: flex; justify-content: space-between; gap: 12px; padding: 9px 12px; color: var(--ink-2);
+}
+.figure-head { border-bottom: 1px solid var(--ink); }
+.figure-foot { border-top: 1px solid var(--ink); }
+#mesh { display: block; width: 100%; aspect-ratio: 5 / 4; cursor: crosshair; }
+.figure-foot .val { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* load sequence */
+.rise { opacity: 0; transform: translateY(18px); animation: rise .9s var(--ease) forwards; }
+.d1 { animation-delay: .05s } .d2 { animation-delay: .15s } .d3 { animation-delay: .28s } .d4 { animation-delay: .4s } .d5 { animation-delay: .55s }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* ---------- sections ---------- */
+section.block { padding: clamp(72px, 10vw, 140px) 0; border-top: 1px solid var(--rule); }
+.sec-head { display: grid; grid-template-columns: 3fr 9fr; gap: clamp(16px, 4vw, 64px); margin-bottom: clamp(36px, 5vw, 64px); }
+@media (max-width: 820px) { .sec-head { grid-template-columns: 1fr; } }
+.sec-head .mono { color: var(--ink-3); padding-top: 12px; }
+.sec-head .mono span { color: var(--signal); }
+h2 { font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.02; letter-spacing: -.035em; font-weight: 800; margin: 0; max-width: 16em; }
+h2 .soft { font-weight: 400; font-style: italic; color: var(--ink-2); }
+h3 { letter-spacing: -.02em; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- services index ---------- */
+.index { border-top: 1px solid var(--ink); }
+.index details { border-bottom: 1px solid var(--rule); }
+.index summary {
+  list-style: none; cursor: pointer; display: grid;
+  grid-template-columns: 64px 1fr auto; gap: 16px; align-items: baseline;
+  padding: 26px 0; transition: padding .35s var(--ease);
+}
+.index summary::-webkit-details-marker { display: none; }
+.index .n { font-family: var(--mono); font-size: 13px; color: var(--ink-3); }
+.index .t { font-size: clamp(1.4rem, 2.8vw, 2.3rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.1; }
+.index .plus { width: 22px; height: 22px; position: relative; align-self: center; }
+.index .plus::before, .index .plus::after {
+  content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1.5px; background: var(--ink);
+  transition: transform .35s var(--ease);
+}
+.index .plus::after { transform: rotate(90deg); }
+.index details[open] .plus::after { transform: rotate(0); }
+.index summary:hover .t { color: var(--signal); }
+.index summary:hover { padding-left: 10px; }
+.index .body {
+  display: grid; grid-template-columns: 64px 6fr 4fr; gap: 16px; padding: 0 0 32px;
+}
+.index .body p { margin: 0; color: var(--ink-2); max-width: 34em; }
+.index .tags { display: flex; flex-wrap: wrap; gap: 6px; align-content: start; }
+.tag { font-family: var(--mono); font-size: 12px; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 2px; color: var(--ink-2); }
+@media (max-width: 820px) {
+  .index summary { grid-template-columns: 40px 1fr auto; }
+  .index .body { grid-template-columns: 40px 1fr; }
+  .index .tags { grid-column: 2; }
+}
+
+/* ---------- signal path ---------- */
+.path { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--ink); }
+.path .stage { padding: 22px 18px 26px; border-right: 1px solid var(--rule); position: relative; min-width: 0; }
+.path .stage:last-child { border-right: 0; }
+.path .stage .mono { color: var(--ink-3); display: block; margin-bottom: 40px; }
+.path .stage h3 { font-size: 1.3rem; margin: 0 0 12px; font-weight: 600; }
+.path ul { list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+.path li { padding: 4px 0; border-top: 1px dashed var(--rule); }
+.path .wire { position: absolute; left: 0; right: 0; top: 52px; height: 1px; background: var(--ink); pointer-events: none; }
+.path .pulse {
+  position: absolute; top: -4px; left: 0; width: 9px; height: 9px; background: var(--signal);
+  opacity: 0;
+}
+.path.in .pulse { animation: travel 4.2s linear infinite; }
+.path.in .pulse.p2 { animation-delay: 1.4s; } .path.in .pulse.p3 { animation-delay: 2.8s; }
+@keyframes travel { 0% { left: 0; opacity: 0 } 5% { opacity: 1 } 95% { opacity: 1 } 100% { left: calc(100% - 9px); opacity: 0 } }
+.path .node { position: absolute; top: 47px; left: 18px; width: 11px; height: 11px; background: var(--paper-2); border: 1.5px solid var(--ink); }
+@media (max-width: 960px) {
+  .path { grid-template-columns: 1fr; }
+  .path .stage { border-right: 0; border-bottom: 1px solid var(--rule); padding-left: 52px; }
+  .path .stage:last-child { border-bottom: 0; }
+  .path .stage .mono { margin-bottom: 10px; }
+  .path .wire { left: 23px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+  .path .node { top: 26px; left: 18px; }
+  .path.in .pulse { animation-name: travel-v; left: -4px; }
+  @keyframes travel-v { 0% { top: 0; opacity: 0 } 5% { opacity: 1 } 95% { opacity: 1 } 100% { top: calc(100% - 9px); opacity: 0 } }
+}
+
+/* ---------- engagement ---------- */
+.engage { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(24px, 5vw, 80px); }
+@media (max-width: 960px) { .engage { grid-template-columns: 1fr; } }
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 48px 1fr; padding: 20px 0; border-top: 1px solid var(--rule); }
+.steps li::before { counter-increment: s; content: "0" counter(s); font-family: var(--mono); font-size: 13px; color: var(--signal); padding-top: 4px; }
+.steps h3 { margin: 0 0 4px; font-size: 1.2rem; font-weight: 600; }
+.steps p { margin: 0; color: var(--ink-2); }
+.ledger { border: 1px solid var(--ink); font-family: var(--mono); font-size: 13px; }
+.ledger .lh { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--ink); color: var(--ink-2); text-transform: uppercase; }
+.ledger .row { display: grid; grid-template-columns: 52px 1fr 56px; gap: 12px; padding: 12px 14px; border-bottom: 1px dashed var(--rule); align-items: center; }
+.ledger .row .d { color: var(--ink-3); }
+.ledger .bar { height: 6px; background: var(--paper-2); position: relative; margin-top: 8px; }
+.ledger .bar i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ink); transition: width 1.2s var(--ease); }
+.ledger.in .bar i { width: var(--w); }
+.ledger .row .h { text-align: right; font-variant-numeric: tabular-nums; }
+.ledger .lf { display: flex; justify-content: space-between; padding: 12px 14px; font-weight: 500; }
+.ledger .lf b { color: var(--signal); font-weight: 500; }
+.ledger .note { padding: 0 14px 12px; color: var(--ink-3); font-size: 11.5px; }
+
+/* ---------- work ---------- */
+.cases { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.case { background: var(--paper); padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 14px; min-height: 320px; transition: background .3s; }
+.case:hover { background: var(--paper-2); }
+.case.wide { grid-column: span 7; } .case.narrow { grid-column: span 5; } .case.half { grid-column: span 6; }
+@media (max-width: 820px) { .case.wide, .case.narrow, .case.half { grid-column: span 12; } }
+.case .meta { display: flex; justify-content: space-between; color: var(--ink-3); }
+.case h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.1; margin: 0; font-weight: 600; }
+.case p { margin: 0; color: var(--ink-2); }
+.case dl { margin: auto 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 15px; }
+.case dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; color: var(--ink-3); padding-top: 2px; }
+.case dd { margin: 0; }
+
+/* ---------- about ---------- */
+.about { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(24px, 5vw, 80px); }
+@media (max-width: 820px) { .about { grid-template-columns: 1fr; } }
+.portrait {
+  aspect-ratio: 4 / 5; border: 1px solid var(--ink); background:
+  repeating-linear-gradient(135deg, transparent 0 10px, color-mix(in srgb, var(--ink) 7%, transparent) 10px 11px), var(--paper-2);
+  display: grid; place-items: center; color: var(--ink-3); text-align: center; padding: 20px;
+}
+.about .bio p { font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.5; margin: 0 0 1em; max-width: 34em; }
+.about .bio p:first-child::first-line { font-weight: 600; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin-top: 40px; }
+.facts div { padding: 18px 16px 0 0; }
+.facts .mono { color: var(--ink-3); display: block; margin-bottom: 6px; }
+.facts strong { font-size: 1.1rem; font-weight: 600; }
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } .facts div { padding: 14px 0; border-bottom: 1px solid var(--rule); } }
+
+/* ---------- contact ---------- */
+.contact { background: var(--ink); color: var(--paper); border-top: 0; }
+.contact h2 { color: var(--paper); font-size: clamp(2.4rem, 6.4vw, 5.6rem); max-width: 12em; }
+.contact .sec-head .mono { color: color-mix(in srgb, var(--paper) 55%, transparent); }
+.contact .mailto {
+  display: inline-block; font-size: clamp(1.4rem, 3.4vw, 2.8rem); font-weight: 600; letter-spacing: -.03em;
+  text-decoration: none; border-bottom: 2px solid var(--signal); padding-bottom: 4px; margin-top: 8px;
+  transition: color .2s; overflow-wrap: anywhere;
+}
+.contact .mailto:hover { color: var(--signal); }
+.contact-grid { display: grid; grid-template-columns: 3fr 9fr; gap: clamp(16px, 4vw, 64px); }
+@media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact .alt { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px 28px; color: color-mix(in srgb, var(--paper) 70%, transparent); }
+
+/* ---------- footer ---------- */
+footer { padding: 40px 0 56px; color: var(--ink-3); font-size: 14px; }
+footer .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+footer .mono { display: block; color: var(--ink-2); margin-bottom: 8px; }
+footer p { margin: 0; }
+@media (max-width: 820px) { footer .wrap { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { footer .wrap { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .reveal { opacity: 1; transform: none; animation: none; transition: none; }
+  .path.in .pulse { animation: none; }
+  .ledger .bar i { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="Mindworks home">
+      <svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 16V6l6 6 6-6v10" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="9" y="15" width="4" height="4" fill="var(--signal)"/></svg>
+      Mindworks
+    </a>
+    <nav class="primary" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#stack">IoT stack</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="cta-sm" href="#contact">Start a conversation</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="readout mono rise d1" aria-label="Location and local time">
+        <span>Mindworks / Engineering consultancy</span>
+        <span>51.5072° N, 0.1276° W</span>
+        <span>London <b id="clock">--:--:--</b></span>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <h1 class="rise d2">Software for things that live in the <span class="soft">real</span> world<span class="em">.</span></h1>
+          <p class="lede rise d3">
+            I'm <strong>Berk Baydur</strong>, and Mindworks is my independent consultancy. I help companies design, build and run connected products, from firmware and device fleets to the cloud platforms and teams behind them. You hire me by the hour.
+          </p>
+          <div class="actions rise d4">
+            <a class="btn btn-primary" href="#contact">Book an intro call <span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#services">What I do</a>
+          </div>
+        </div>
+
+        <figure class="figure rise d5" style="margin:0">
+          <div class="figure-head mono"><span>Fig. 01 / Device → Edge → Cloud</span><span>Simulated</span></div>
+          <canvas id="mesh" aria-label="Animated diagram of sensor devices sending data packets through gateways to a cloud platform"></canvas>
+          <div class="figure-foot mono">
+            <span>Packets <span class="val" id="pk">0</span></span>
+            <span>Nodes <span class="val" id="nd">0</span></span>
+            <span>p95 <span class="val" id="lat">--</span> ms</span>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="mono"><span>§01</span> Services</p>
+        <h2>One senior engineer, five roles. <span class="soft">You use whichever ones the job needs.</span></h2>
+      </div>
+
+      <div class="index reveal">
+        <details open>
+          <summary><span class="n">01</span><span class="t">Architecture & technical consultancy</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><span></span>
+            <p>System design reviews, target architectures and the decisions in between: build or buy, monolith or services, which cloud, which protocol. You get written recommendations your team can act on, with the reasoning behind each one.</p>
+            <div class="tags"><span class="tag">Architecture reviews</span><span class="tag">Tech due diligence</span><span class="tag">ADRs</span><span class="tag">Roadmaps</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="n">02</span><span class="t">IoT systems, end to end</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><span></span>
+            <p>Connected products from the device up: provisioning, telemetry pipelines, OTA updates, fleet management and the dashboards on top. I work on the layer where hardware and software teams usually talk past each other.</p>
+            <div class="tags"><span class="tag">MQTT</span><span class="tag">BLE</span><span class="tag">Edge gateways</span><span class="tag">OTA</span><span class="tag">Fleet ops</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="n">03</span><span class="t">Hands-on software delivery</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><span></span>
+            <p>When you need code more than advice, I write it: backend services, APIs, integrations and the infrastructure they run on. I leave behind tests, docs and a codebase your own team can own.</p>
+            <div class="tags"><span class="tag">Backend & APIs</span><span class="tag">Cloud infrastructure</span><span class="tag">CI/CD</span><span class="tag">Integrations</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="n">04</span><span class="t">Interim team leadership</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><span></span>
+            <p>I step in as engineering lead while you hire, reorganise or recover a delivery that has slipped. That covers running the team day to day, setting up processes that fit its size, and handing over cleanly once a permanent lead is in place.</p>
+            <div class="tags"><span class="tag">Engineering management</span><span class="tag">Delivery process</span><span class="tag">Hiring</span><span class="tag">Mentoring</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="n">05</span><span class="t">Technology evaluation & adoption</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><span></span>
+            <p>Before you commit to a platform, vendor or tool, I trial it against your real constraints, write up what I found and, if it holds up, roll it out. That saves your team from finding the problems six months in.</p>
+            <div class="tags"><span class="tag">Vendor trials</span><span class="tag">Proofs of concept</span><span class="tag">Rollout</span><span class="tag">Developer tooling</span></div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="stack">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="mono"><span>§02</span> IoT stack</p>
+        <h2>Comfortable at every hop of the signal path<span style="color:var(--signal)">.</span></h2>
+      </div>
+      <div class="path reveal" id="path">
+        <div class="wire" aria-hidden="true"><span class="pulse"></span><span class="pulse p2"></span><span class="pulse p3"></span></div>
+        <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">01 Device</span><h3>Sensors & firmware</h3>
+          <ul><li>Embedded C / C++</li><li>ESP32 · STM32</li><li>Raspberry Pi</li><li>RTOS basics</li></ul></div>
+        <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">02 Transport</span><h3>Connectivity</h3>
+          <ul><li>MQTT · CoAP</li><li>BLE · Wi-Fi</li><li>LoRaWAN · LTE-M</li><li>Modbus · CAN</li></ul></div>
+        <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">03 Edge</span><h3>Gateways</h3>
+          <ul><li>Linux gateways</li><li>Containers at the edge</li><li>Offline buffering</li><li>Secure provisioning</li></ul></div>
+        <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">04 Cloud</span><h3>Platform</h3>
+          <ul><li>AWS IoT · Azure IoT</li><li>Kafka · time-series DBs</li><li>Kubernetes</li><li>Terraform</li></ul></div>
+        <div class="stage"><span class="node" aria-hidden="true"></span><span class="mono">05 Product</span><h3>Applications</h3>
+          <ul><li>Node.js · Python · Go</li><li>React dashboards</li><li>Mobile companions</li><li>Analytics & alerts</li></ul></div>
+      </div>
+      <p class="mono reveal" style="color:var(--ink-3);margin-top:16px"><span class="placeholder">Draft list. Edit to match the stack you have actually shipped with.</span></p>
+    </div>
+  </section>
+
+  <section class="block" id="engagements">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="mono"><span>§03</span> Engagements</p>
+        <h2>Billed by the hour. <span class="soft">Judged by what ships.</span></h2>
+      </div>
+      <div class="engage">
+        <ol class="steps reveal">
+          <li><div><h3>Intro call</h3><p>Thirty minutes, free. We work out whether I'm the right person for it, and if not, who might be.</p></div></li>
+          <li><div><h3>Scope & rate</h3><p>A short written scope, an hourly rate and an estimate of hours. No retainers unless you want one.</p></div></li>
+          <li><div><h3>Work in the open</h3><p>I work in your tools and your repos, inside your team's rhythm. Hours are logged against tasks so the invoice holds no surprises.</p></div></li>
+          <li><div><h3>Hand over</h3><p>Documentation, recorded walkthroughs and a team that no longer needs me. That's how I measure a good engagement.</p></div></li>
+        </ol>
+        <div class="ledger reveal" id="ledger" aria-label="Illustrative example of a weekly timesheet">
+          <div class="lh"><span>Timesheet</span><span>Example week</span></div>
+          <div class="row"><span class="d">Mon</span><div>Architecture review: telemetry ingestion<div class="bar"><i style="--w:75%"></i></div></div><span class="h">6.0h</span></div>
+          <div class="row"><span class="d">Tue</span><div>Implement device provisioning service<div class="bar"><i style="--w:100%"></i></div></div><span class="h">8.0h</span></div>
+          <div class="row"><span class="d">Wed</span><div>Team planning · process retro<div class="bar"><i style="--w:50%"></i></div></div><span class="h">4.0h</span></div>
+          <div class="row"><span class="d">Thu</span><div>Vendor trial: managed MQTT broker<div class="bar"><i style="--w:87.5%"></i></div></div><span class="h">7.0h</span></div>
+          <div class="row"><span class="d">Fri</span><div>Write-up and handover notes<div class="bar"><i style="--w:37.5%"></i></div></div><span class="h">3.0h</span></div>
+          <div class="lf"><span>Total</span><b>28.0h</b></div>
+          <p class="note">Illustrative only. Every engagement is scoped individually.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="mono"><span>§04</span> Selected work</p>
+        <h2>Recent engagements<span style="color:var(--signal)">.</span></h2>
+      </div>
+      <div class="cases reveal">
+        <article class="case wide">
+          <div class="meta mono"><span><span class="placeholder">Sector</span></span><span><span class="placeholder">2025</span></span></div>
+          <h3><span class="placeholder">Project title, e.g. "Telemetry platform for a fleet of N devices"</span></h3>
+          <p><span class="placeholder">Two sentences on the client's problem in plain language.</span></p>
+          <dl><dt>Role</dt><dd><span class="placeholder">Architect · Lead engineer</span></dd><dt>Stack</dt><dd><span class="placeholder">MQTT, AWS IoT, Go</span></dd><dt>Outcome</dt><dd><span class="placeholder">One concrete, verifiable result</span></dd></dl>
+        </article>
+        <article class="case narrow">
+          <div class="meta mono"><span><span class="placeholder">Sector</span></span><span><span class="placeholder">2024</span></span></div>
+          <h3><span class="placeholder">Project title</span></h3>
+          <p><span class="placeholder">Problem in two sentences.</span></p>
+          <dl><dt>Role</dt><dd><span class="placeholder">Interim engineering lead</span></dd><dt>Outcome</dt><dd><span class="placeholder">Result</span></dd></dl>
+        </article>
+        <article class="case half">
+          <div class="meta mono"><span><span class="placeholder">Sector</span></span><span><span class="placeholder">2024</span></span></div>
+          <h3><span class="placeholder">Project title</span></h3>
+          <p><span class="placeholder">Problem in two sentences.</span></p>
+          <dl><dt>Role</dt><dd><span class="placeholder">Consultant</span></dd><dt>Outcome</dt><dd><span class="placeholder">Result</span></dd></dl>
+        </article>
+        <article class="case half">
+          <div class="meta mono"><span><span class="placeholder">Sector</span></span><span><span class="placeholder">2023</span></span></div>
+          <h3><span class="placeholder">Project title</span></h3>
+          <p><span class="placeholder">Problem in two sentences.</span></p>
+          <dl><dt>Role</dt><dd><span class="placeholder">Technology evaluation</span></dd><dt>Outcome</dt><dd><span class="placeholder">Result</span></dd></dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="mono"><span>§05</span> About</p>
+        <h2>Turkish-born, London-based, <span class="soft">building since <span class="placeholder">20XX</span>.</span></h2>
+      </div>
+      <div class="about">
+        <div class="portrait mono reveal">Portrait<br>4:5, natural light, no stock photos</div>
+        <div class="bio reveal">
+          <p>I'm Berk Baydur, a software engineer with <span class="placeholder">N</span> years of experience across product companies and consultancies, mostly where software meets hardware.</p>
+          <p>I founded Mindworks in <span class="placeholder">20XX</span> to work with companies directly: sometimes as their architect, sometimes as a developer on the team, sometimes as the person who sets up how the team works. <span class="placeholder">One sentence on your background: education, notable employers, what you're known for.</span></p>
+          <p>I work from London with clients across the UK and Europe, in English and Turkish.</p>
+          <div class="facts">
+            <div><span class="mono">Based</span><strong>London, UK</strong></div>
+            <div><span class="mono">Languages</span><strong>English · Türkçe</strong></div>
+            <div><span class="mono">Working with</span><strong>UK & EU clients</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <p class="mono" style="color:color-mix(in srgb,var(--paper) 55%,transparent);padding-top:12px"><span style="color:var(--signal)">§06</span> Contact</p>
+        <div>
+          <h2 class="reveal">Got a connected product that needs a senior pair of hands?</h2>
+          <a class="mailto reveal" href="mailto:hello@mindworkss.co.uk">hello@mindworkss.co.uk</a>
+          <div class="alt mono reveal">
+            <a href="https://www.linkedin.com/" rel="noopener"><span class="placeholder">LinkedIn</span> ↗</a>
+            <a href="https://github.com/berkbaydur" rel="noopener">GitHub ↗</a>
+            <span>Replies within one working day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><span class="mono">Mindworks</span><p>Software & IoT engineering consultancy.</p></div>
+    <div><span class="mono">Company</span><p><span class="placeholder">Registered legal name Ltd</span><br>Registered in England & Wales<br>No. <span class="placeholder">00000000</span></p></div>
+    <div><span class="mono">Registered office</span><p><span class="placeholder">Address line 1<br>London, POSTCODE</span></p></div>
+    <div><span class="mono">© <span id="yr">2026</span></span><p><span class="placeholder">VAT No. if registered</span><br><a href="#">Privacy notice</a></p></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // London clock
+  const clock = document.getElementById('clock');
+  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  const tick = () => { clock.textContent = fmt.format(new Date()); };
+  tick(); setInterval(tick, 1000);
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Scroll reveals
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, #path, #ledger').forEach((el) => io.observe(el));
+
+  // Device mesh canvas
+  const cv = document.getElementById('mesh');
+  const ctx = cv.getContext('2d');
+  const pkEl = document.getElementById('pk'), ndEl = document.getElementById('nd'), latEl = document.getElementById('lat');
+  let W = 0, H = 0, dpr = 1, devices = [], gateways = [], cloud = null, packets = [], sent = 0;
+  const mouse = { x: -1e3, y: -1e3 };
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  let C = {};
+  const readColors = () => { C = { ink: css('--ink'), ink3: css('--ink-3'), rule: css('--rule'), sig: css('--signal'), bg: css('--paper-2') }; };
+
+  // Deterministic PRNG so the layout is stable between reloads
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+  function layout() {
+    const r = cv.getBoundingClientRect();
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    seed = 7;
+    cloud = { x: W * 0.86, y: H * 0.5 };
+    gateways = [0.22, 0.5, 0.78].map((f) => ({ x: W * 0.55, y: H * f }));
+    devices = [];
+    const n = W < 420 ? 16 : 24;
+    for (let i = 0; i < n; i++) {
+      const x = W * (0.06 + rnd() * 0.32), y = H * (0.08 + rnd() * 0.84);
+      let g = 0, best = 1e9;
+      gateways.forEach((gw, j) => { const d = Math.hypot(gw.x - x, gw.y - y); if (d < best) { best = d; g = j; } });
+      devices.push({ x, y, g, phase: rnd() * 6.28, val: (18 + rnd() * 6).toFixed(1), next: rnd() * 2000 });
+    }
+    ndEl.textContent = devices.length + gateways.length + 1;
+  }
+
+  function spawn(d, now) {
+    const gw = gateways[d.g];
+    packets.push({ ax: d.x, ay: d.y, bx: gw.x, by: gw.y, t: 0, sp: 0.0011 + rnd() * 0.0007, hop: 0, gw, born: now });
+    d.next = now + 1400 + rnd() * 3200;
+    d.val = (18 + rnd() * 6).toFixed(1);
+  }
+
+  const lats = [];
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    // faint grid
+    ctx.strokeStyle = C.rule; ctx.lineWidth = 1; ctx.globalAlpha = 0.5;
+    ctx.beginPath();
+    for (let x = 0; x < W; x += 24) { ctx.moveTo(x + .5, 0); ctx.lineTo(x + .5, H); }
+    for (let y = 0; y < H; y += 24) { ctx.moveTo(0, y + .5); ctx.lineTo(W, y + .5); }
+    ctx.stroke(); ctx.globalAlpha = 1;
+
+    // links
+    ctx.strokeStyle = C.ink3; ctx.lineWidth = 1; ctx.setLineDash([2, 4]);
+    ctx.beginPath();
+    devices.forEach((d) => { const g = gateways[d.g]; ctx.moveTo(d.x, d.y); ctx.lineTo(g.x, g.y); });
+    ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = C.ink; ctx.beginPath();
+    gateways.forEach((g) => { ctx.moveTo(g.x, g.y); ctx.lineTo(cloud.x, cloud.y); });
+    ctx.stroke();
+
+    // devices
+    ctx.font = '10px "IBM Plex Mono", monospace';
+    devices.forEach((d, i) => {
+      if (!reduce && now > d.next) spawn(d, now);
+      const near = Math.hypot(mouse.x - d.x, mouse.y - d.y) < 60;
+      ctx.fillStyle = near ? C.sig : C.ink;
+      ctx.fillRect(d.x - 3, d.y - 3, 6, 6);
+      if (near) {
+        ctx.fillStyle = C.ink;
+        ctx.fillText(`node-${String(i + 1).padStart(2, '0')} ${d.val}°C`, d.x + 8, d.y + 3);
+      }
+    });
+    // gateways (diamonds)
+    gateways.forEach((g, i) => {
+      ctx.save(); ctx.translate(g.x, g.y); ctx.rotate(Math.PI / 4);
+      ctx.fillStyle = C.bg; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.5;
+      ctx.fillRect(-7, -7, 14, 14); ctx.strokeRect(-7, -7, 14, 14);
+      ctx.restore();
+      ctx.fillStyle = C.ink3; ctx.fillText(`gw-${i + 1}`, g.x - 12, g.y - 15);
+    });
+    // cloud
+    ctx.fillStyle = C.ink; ctx.fillRect(cloud.x - 11, cloud.y - 11, 22, 22);
+    ctx.fillStyle = C.sig; ctx.fillRect(cloud.x - 4, cloud.y - 4, 8, 8);
+    ctx.fillStyle = C.ink3; ctx.fillText('cloud', cloud.x - 15, cloud.y - 18);
+
+    // packets
+    for (let i = packets.length - 1; i >= 0; i--) {
+      const p = packets[i];
+      p.t += p.sp * 16;
+      if (p.t >= 1) {
+        if (p.hop === 0) { p.ax = p.gw.x; p.ay = p.gw.y; p.bx = cloud.x; p.by = cloud.y; p.t = 0; p.hop = 1; p.sp *= 1.6; }
+        else {
+          packets.splice(i, 1); sent++;
+          lats.push(now - p.born); if (lats.length > 40) lats.shift();
+          continue;
+        }
+      }
+      const x = p.ax + (p.bx - p.ax) * p.t, y = p.ay + (p.by - p.ay) * p.t;
+      ctx.fillStyle = C.sig; ctx.fillRect(x - 2.5, y - 2.5, 5, 5);
+    }
+    pkEl.textContent = sent.toLocaleString('en-GB');
+    if (lats.length > 5) {
+      const s = [...lats].sort((a, b) => a - b);
+      latEl.textContent = Math.round(s[Math.floor(s.length * 0.95) - 1] / 10);
+    }
+  }
+
+  let raf, running = true;
+  function loop(now) { draw(now); if (running) raf = requestAnimationFrame(loop); }
+  readColors(); layout();
+  if (reduce) {
+    // Static frame with a few packets mid-flight
+    devices.slice(0, 8).forEach((d) => { spawn(d, 0); packets[packets.length - 1].t = rnd(); });
+    draw(0);
+  } else {
+    raf = requestAnimationFrame(loop);
+    new IntersectionObserver(([e]) => {
+      running = e.isIntersecting;
+      if (running) { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); }
+    }).observe(cv);
+  }
+  cv.addEventListener('pointermove', (e) => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; if (reduce) draw(0); });
+  cv.addEventListener('pointerleave', () => { mouse.x = mouse.y = -1e3; if (reduce) draw(0); });
+  addEventListener('resize', () => { layout(); packets = []; if (reduce) draw(0); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); if (reduce) draw(0); });
+})();
+</script>
+</body>
+</html>
